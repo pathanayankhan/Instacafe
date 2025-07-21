@@ -1,0 +1,124 @@
+<html>
+<head>
+  <title>Insta Cafe</title>
+  <style>
+   body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-image: url('1.jpg');  
+  background-size: cover; /* keep cover for full screen */
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  filter: none;
+
+  /* 🔥 Add these for sharper image */
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .buttons .btn {
+      padding: 12px 24px;
+      font-size: 1em;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      z-index: 2;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);
+      background-size: 400%;
+      z-index: -1;
+      filter: blur(5px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 35px;
+      animation: rgbFlow 6s linear infinite;
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+    }
+
+    @keyframes rgbFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Back button */
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 18px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid white;
+      transition: background 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    
+    
+
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">← Back</a>
+
+  <h1><b><i>Insta Cafe</i></b></h1>
+  <p><i><b>Step into a world of flavors where every dish is crafted with love. Enjoy coffee, snacks, and more.</b></i></p>
+
+  <div class="buttons">
+    <a href="menu.html" class="btn">Menu</a>
+    <a href="contact.html" class="btn">Contact</a>
+  </div>
+
+
+  
+</body>
+</html>

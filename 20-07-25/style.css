@@ -1,0 +1,243 @@
+/* ========== General Styling ========== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-images:url('1.jpg')no repeat;
+}
+
+/* Back Button */
+.back-btn {
+  display: inline-block;
+  margin: 20px;
+  text-decoration: none;
+  background: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+/* ========== Welcome Page (index.html) ========== */
+.welcome-page {
+  background: linear-gradient(to right, #ff9966, #ff5e62);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.explore-container h1 {
+  font-size: 3rem;
+}
+
+.explore-container button {
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  background-color: white;
+  color: #ff5e62;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.nav-buttons {
+  display: none;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.nav-buttons a {
+  background: white;
+  color: #ff5e62;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+/* ========== Home Page ========== */
+.home-container {
+  min-height: 100vh;
+  background: url('https://images.unsplash.com/photo-1524594227084-9f3a4aebd4e1') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+  color: white;
+  flex-direction: column;
+  position: relative;
+}
+
+.home-container::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 0;
+}
+
+.home-container h1,
+.home-container p,
+.home-buttons {
+  position: relative;
+  z-index: 1;
+}
+
+.home-container h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.home-container p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.home-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-buttons a {
+  background: #ff5e62;
+  color: white;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.home-buttons a:hover {
+  background: #e64545;
+}
+
+.contact-page {
+  background: url('images/cafe-bg.jpg') no-repeat center center/cover;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+}
+
+.review-container {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  margin: 50px auto;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.review-container textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  resize: none;
+  margin-bottom: 15px;
+}
+
+.review-container button {
+  padding: 12px 25px;
+  background-color: rgb(255, 100, 130);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.review-container button:hover {
+  background-color: rgb(220, 70, 110);
+}
+
+.footer {
+  background-color: #222;
+  color: #eee;
+  padding: 40px 30px 30px;
+  font-family: Arial, sans-serif;
+
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: auto;
+}
+
+
+.footer-left,
+.footer-center,
+.footer-right {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 20px;
+}
+
+.footer h3 {
+	text-decoration:underline 2.5px;
+	margin-top:5px;
+	text-decoration-color:blue;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin: 8px 0;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.social-icons a img {
+  width: 24px;
+  margin-right: 10px;
+  margin-top:7px;
+  transition: transform 0.3s;
+  border-radius:40px;
+ width:30px;
+}
+
+.social-icons a img:hover {
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #444;
+  font-size: 14px;
+  color: #aaa;
+}

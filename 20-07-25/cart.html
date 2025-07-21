@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart | Insta Cafe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 30px;
+      background-color: #f7f7f7;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .product-list {
+      flex: 2;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .product {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 15px;
+    }
+
+    .product img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product-info {
+      flex: 1;
+    }
+
+    .product-info h3 {
+      margin: 0 0 5px;
+    }
+
+    .product-actions {
+      text-align: center;
+    }
+
+    .cart-summary {
+      flex: 1;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      height: fit-content;
+    }
+
+    .cart-summary h2 {
+      margin-top: 0;
+    }
+
+    .cart-summary p,
+    .cart-summary input {
+      margin: 10px 0;
+    }
+
+    .checkout-btn {
+      background-color: #6e0d25;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .quantity {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quantity button {
+      padding: 5px 10px;
+      font-size: 16px;
+    }
+
+    .remove-btn {
+      color: red;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Your Cart</h1>
+  <a href="menu.html" style="display:inline-block; margin-bottom: 20px; background-color:#6e0d25; color:white; padding:10px 20px; border-radius:5px; text-decoration:none;">← Back to Menu</a>
+
+  <div class="container">
+    <!-- Left: Product List -->
+    <div class="product-list" id="cart-items">
+      <!-- JavaScript will inject items here -->
+    </div>
+
+    <!-- Right: Cart Summary -->
+    <div class="cart-summary">
+      <h2>Cart Totals</h2>
+      <p><strong>Add a coupon</strong></p>
+      <input type="text" placeholder="Enter coupon code" />
+      <hr />
+      <p>Subtotal: ₹<span id="subtotal">0</span></p>
+      <p><strong>Delivery</strong></p>
+      <p>Enter address to check delivery options</p>
+      <hr />
+      <h3>Total: ₹<span id="total">0</span></h3>
+      <button class="checkout-btn" onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function renderCart() {
+      const cartContainer = document.getElementById("cart-items");
+      cartContainer.innerHTML = "";
+      let subtotal = 0;
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+
+        cartContainer.innerHTML += `
+          <div class="product">
+            <img src="${item.image}" alt="${item.name}" />
+            <div class="product-info">
+              <h3>${item.name}</h3>
+              <p>₹${item.price}</p>
+              <p class="remove-btn" onclick="removeItem(${index})">Remove item</p>
+            </div>
+            <div class="product-actions">
+              <div class="quantity">
+                <button onclick="changeQty(${index}, -1)">-</button>
+                <span>${item.quantity}</span>
+                <button onclick="changeQty(${index}, 1)">+</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      document.getElementById("subtotal").innerText = subtotal;
+      document.getElementById("total").innerText = subtotal;
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function changeQty(index, change) {
+      if (cart[index].quantity + change >= 1) {
+        cart[index].quantity += change;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
+    }
+
+    renderCart();
+  </script>
+
+</body>
+</html>

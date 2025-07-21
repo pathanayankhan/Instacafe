@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Insta Cafe</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .hero {
+      background: url('00.jpeg') no-repeat center center/cover;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      color: white;
+    }
+
+    .content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      margin-top: -50px; /* Move text slightly up */
+    }
+
+    /* Transparent Login Box */
+    .login-box {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      margin: 10px auto;
+      color: #fff;
+    }
+
+    .login-box h2 {
+      margin-bottom: 10px;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 5px;
+    }
+
+    /* Tab buttons */
+    .tabs {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .tabs button {
+      width: 48%;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .tabs button.active {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Login Button (RGB style) */
+    .btn-login {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border: 2px solid #fff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      background: linear-gradient(45deg, red, green, blue);
+      background-size: 400% 400%;
+      animation: gradientBG 5s ease infinite;
+      transition: 0.3s;
+      cursor: pointer;
+      text-align: center;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .btn-login:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Welcome to Insta Cafe</h1>
+
+      <!-- Login Box -->
+      <div class="login-box">
+        <div class="tabs">
+          <button id="tab-login" class="active" onclick="showLogin()">Log In</button>
+          <button id="tab-signup" onclick="showSignup()">Sign Up</button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-form">
+          <input type="email" id="login-email" placeholder="Email">
+          <input type="password" id="login-password" placeholder="Password">
+          <a class="btn-login" onclick="login()">Log In</a>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signup-form" style="display:none;">
+          <input type="email" id="signup-email" placeholder="New Email">
+          <input type="password" id="signup-password" placeholder="New Password">
+          <a class="btn-login" onclick="signup()">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showLogin() {
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('signup-form').style.display = 'none';
+      document.getElementById('tab-login').classList.add('active');
+      document.getElementById('tab-signup').classList.remove('active');
+    }
+    function showSignup() {
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('signup-form').style.display = 'block';
+      document.getElementById('tab-signup').classList.add('active');
+      document.getElementById('tab-login').classList.remove('active');
+    }
+
+    // Save new user (Sign Up)
+    function signup() {
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      if (email && password) {
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userPassword', password);
+        alert('Signup successful! Now log in.');
+        showLogin();
+      } else {
+        alert('Please enter email and password.');
+      }
+    }
+
+    // Check login
+    function login() {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      const savedEmail = localStorage.getItem('userEmail');
+      const savedPassword = localStorage.getItem('userPassword');
+
+      if (email === savedEmail && password === savedPassword) {
+        alert('Login successful!');
+        window.location.href = 'home.html';
+      } else {
+        alert('Invalid login details! Please try again.');
+      }
+    }
+  </script>
+</body>
+</html>
